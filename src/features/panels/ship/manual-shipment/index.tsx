@@ -9,6 +9,7 @@ import { EditParcelsBody } from "../components/EditParcelBody";
 import { EditParcelsFooter } from "../components/EditParcelsFooter";
 import { RatesBody } from "../components/RatesBody";
 import { RatesFooter } from "../components/RatesFooter";
+import { userAddress } from "../user.fixture";
 
 export const SenderAddressFormContext = getAddressContext();
 export const RecipientAddressFormContext = getAddressContext();
@@ -21,7 +22,9 @@ const title = "Manual Shipment";
 
 export const ManualShipmentFlow = ({ panelId }: ManualShipmentFlowProps) => {
   const senderAddressForm = useAddressForm({
-    defaultValues: {},
+    defaultValues: {
+      ...userAddress,
+    },
   });
   const recipientAddressForm = useAddressForm({
     defaultValues: {},
