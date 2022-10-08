@@ -61,7 +61,7 @@ export const ToShipPage = () => {
               <TableCell>From city</TableCell>
               <TableCell>To city</TableCell>
               <TableCell>Weight</TableCell>
-              <TableCell>Ship</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -76,7 +76,7 @@ export const ToShipPage = () => {
                 <TableCell>{order.senderAddress.city}</TableCell>
                 <TableCell>{order.recipientAddress.city}</TableCell>
                 <TableCell>{order.parcel.weight} kg</TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Button
                     onClick={() => onShipOrder(order)}
                     size="small"

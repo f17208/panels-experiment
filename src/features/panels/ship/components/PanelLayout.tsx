@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Card, Typography, useTheme } from "@mui/material";
 import { FC, ReactNode } from "react";
 
 export type PanelLayoutProps = {
@@ -11,7 +11,7 @@ export const PanelLayout: FC<PanelLayoutProps> = ({ header, body, footer }) => {
   const theme = useTheme();
   const bgColor = theme.palette.primary.main;
   return (
-    <div className="panel">
+    <Card className="panel">
       <Box>
         <Box className="panel-header">
           {typeof header === 'string' ? 
@@ -38,6 +38,6 @@ export const PanelLayout: FC<PanelLayoutProps> = ({ header, body, footer }) => {
       <div className="panel-footer">
         {footer}
       </div>
-    </div>
+    </Card>
   );
 }

@@ -1,7 +1,4 @@
 .panel {
-  border-left: 1px solid gray;
-  border-bottom: 1px solid gray;
-  border-bottom-left-radius: 10px;
   height: 100%;
   display: flex;
   flex-direction: column;
