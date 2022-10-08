@@ -53,7 +53,7 @@ export const ToShipPage = () => {
           Manual Shipment
         </Button>
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} square>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>

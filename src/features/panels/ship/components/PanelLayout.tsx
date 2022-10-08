@@ -11,7 +11,7 @@ export const PanelLayout: FC<PanelLayoutProps> = ({ header, body, footer }) => {
   const theme = useTheme();
   const bgColor = theme.palette.primary.main;
   return (
-    <Card className="panel">
+    <Card className="panel" square>
       <Box>
         <Box className="panel-header">
           {typeof header === 'string' ? 
