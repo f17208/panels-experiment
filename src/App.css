@@ -22,10 +22,6 @@
   width: 100%;
 }
 
-.panel-header button {
-  height: 24px;
-}
-
 .main-view {
   padding: 18px;
   flex-grow: 1;
@@ -52,7 +48,7 @@
   overflow: hidden;
 }
 
-.panels-tabs button {
+.panels-tabs div {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: 1px solid gray;

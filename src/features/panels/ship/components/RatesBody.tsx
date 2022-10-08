@@ -1,3 +1,4 @@
+import { Edit } from "@mui/icons-material";
 import { Alert, Container, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FC, useMemo } from "react";
@@ -16,17 +17,33 @@ export const RatesBody: FC<RatesBodyProps> = ({ order }) => {
 
   return <Container maxWidth="sm">
     <Typography py={1} variant="h4">Rates</Typography>
-    <Link to={ShipOrderFlowSteps.EditAddress}>Edit order</Link>
+      <Box display="flex" gap={0.5} alignItems="center">
+        <Edit fontSize="small" />
+        <Link to={ShipOrderFlowSteps.EditAddress}>
+          <Typography fontSize="medium" variant="subtitle2">
+            edit order
+          </Typography>
+        </Link>
+      </Box>
     <Box py={2}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Alert severity="info">Carrier 1: {total}€</Alert>
+          <Alert severity="info">
+            <Typography variant="subtitle2">Carrier 1</Typography>
+            <Typography>{total}€</Typography>
+          </Alert>
         </Grid>
         <Grid item xs={12}>
-          <Alert severity="warning">Carrier 2: not available</Alert>
+          <Alert severity="warning">
+            <Typography variant="subtitle2">Carrier 2</Typography>
+            <Typography>not available</Typography>
+          </Alert>
         </Grid>
         <Grid item xs={12}>
-          <Alert severity="error">Carrier 3: super-weird error</Alert>
+          <Alert severity="error">
+            <Typography variant="subtitle2">Carrier 3</Typography>
+            <Typography>super weird error</Typography>
+          </Alert>
         </Grid>
       </Grid>
     </Box>

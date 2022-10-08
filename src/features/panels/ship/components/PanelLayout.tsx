@@ -35,9 +35,9 @@ export const PanelLayout: FC<PanelLayoutProps> = ({ header, body, footer }) => {
           {body}
         </div>
       </Box>
-      <div className="panel-footer">
+      <Box className="panel-footer">
         {footer}
-      </div>
+      </Box>
     </Card>
   );
 }
