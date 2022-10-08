@@ -15,7 +15,7 @@ import { PanelsProvider, usePanels } from "./features/panels/contexts";
 
 const App = () => {
   const { panels } = usePanels();
-  const [selectedPanelId, setSelectedPanelId] = useState<string | null>();
+  const [selectedPanelId, setSelectedPanelId] = useState<string | null>(null);
 
   const sortedPanels = useMemo(() => {
     return [
@@ -26,10 +26,7 @@ const App = () => {
 
   useEffect(() => {
     setSelectedPanelId(pId => {
-      if (!panels.find(p => p.id === pId)) {
-        return panels[0]?.id || null;
-      }
-      return pId;
+      return panels[0]?.id || pId;
     })
   }, [setSelectedPanelId, panels]);
 
@@ -49,7 +46,11 @@ const App = () => {
         const Component = panel.component;
         return (
           <div key={panel.id} className={i === 0 ? 'panel-show' : 'panel-hidden'}>
-            <PanelsTabs panels={panels} />
+            <PanelsTabs
+              setSelectedPanelId={setSelectedPanelId}
+              selectedPanelId={selectedPanelId}
+              panels={panels}
+            />
             <Component />
           </div>
         )
