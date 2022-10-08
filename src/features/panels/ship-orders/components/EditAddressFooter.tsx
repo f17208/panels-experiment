@@ -6,25 +6,25 @@ import { ParcelFormContext } from "../../../../components/forms/ParcelForm";
 import { ShipOrderFlowSteps } from "../constants";
 
 export const EditAddressFooter = () => {
-  const { formState: recipientAddressFormState } = useContext(RecipientAddressFormContext)!;
-  const { formState: senderAddressFormState } = useContext(SenderAddressFormContext)!;
-  const { formState: editParcelsFormState } = useContext(ParcelFormContext)!;
+  const recipientAddressForm = useContext(RecipientAddressFormContext)!;
+  const senderAddressForm = useContext(SenderAddressFormContext)!;
+  const parcelForm = useContext(ParcelFormContext)!;
 
   const navigate = useNavigate();
 
-  const addressFormsValid = ([
-    recipientAddressFormState.isValid,
-    senderAddressFormState.isValid,
-  ].every(Boolean));
+  const parcelValid = parcelForm.formState.isValid;
+  const recipientAddressValid = recipientAddressForm.formState.isValid;
+  const senderAddressValid = senderAddressForm.formState.isValid;
+  const addressesValid = recipientAddressValid && senderAddressValid;
 
   const nextRouteConfig: { to: string, title: string } = useMemo(() => {
-    if (!addressFormsValid) {
+    if (!addressesValid) {
       return {
         to: ShipOrderFlowSteps.EditAddress,
         title: 'Fill missing data',
       }
     }
-    if (!editParcelsFormState.isValid) {
+    if (!parcelValid) {
       return {
         to: ShipOrderFlowSteps.EditParcels,
         title: 'Next: edit parcels',
@@ -34,14 +34,14 @@ export const EditAddressFooter = () => {
       to: ShipOrderFlowSteps.Rates,
       title: 'Next: calculate rates',
     }
-  }, [editParcelsFormState, addressFormsValid]);
+  }, [addressesValid, parcelValid]);
 
   return (
     <Box p={2}>
       <Button
         variant="contained"
         color="primary"
-        disabled={!addressFormsValid}
+        disabled={!addressesValid}
         onClick={() => navigate(nextRouteConfig.to)}
       >
         {nextRouteConfig.title}
