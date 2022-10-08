@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   BrowserRouter,
   Navigate,
@@ -7,64 +7,11 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import { ManualShipmentFlow, ShipFlows, ShipOrdersFlow } from "./features/ship";
-import { PanelsProvider, usePanels } from "./features/panels";
-import { Navigation } from "./features/navigation";
 
-export const UrlNavigation = () => (
-  <Navigation
-    links={[
-      { name: 'To Ship', path: '/to-ship' },
-      { name: 'Shipped', path: '/shipped' },
-    ]}
-  />
-)
+import { ToShipPage } from "./features/pages/to-ship/ToShip.page";
+import { PanelsTabs } from "./features/panels/components/PanelTabs";
 
-const ToShip: FC= () => {
-  const { addPanel } = usePanels();
-
-  const onManualShipment = useCallback(
-    () => {
-      addPanel({
-        id: ShipFlows.ManualShipment,
-        component: () => <ManualShipmentFlow id={ShipFlows.ManualShipment} />
-      })
-    },
-    [addPanel],
-  );
-
-  const onShipOrders = useCallback(
-    () => {
-      addPanel({
-        id: ShipFlows.ShipOrders,
-        component: () => <ShipOrdersFlow id={ShipFlows.ShipOrders} />
-      })
-    },
-    [addPanel],
-  );
-
-  return (
-    <div>
-      <UrlNavigation />
-      <h1>To Ship</h1>
-      <div style={{ display: 'flex', gap: 12 }}>
-        <button onClick={onManualShipment}>
-          Manual Shipment Flow
-        </button>
-        <button onClick={onShipOrders}>
-          Ship Orders Flow
-        </button>
-      </div>
-    </div>
-  )
-};
-
-const Shipped: FC = () => {
-  return <div>
-    <UrlNavigation />
-    <h1>Shipped</h1>
-  </div>
-};
+import { PanelsProvider, usePanels } from "./features/panels/contexts";
 
 const App = () => {
   const { panels } = usePanels();
@@ -92,8 +39,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to="/to-ship" />} />
-            <Route path="/shipped" element={<Shipped />} />
-            <Route path="/to-ship" element={<ToShip />} />
+            {/* <Route path="/shipped" element={<Shipped />} /> */}
+            <Route path="/to-ship" element={<ToShipPage />} />
           </Routes>
         </BrowserRouter>
       </div>
@@ -102,19 +49,7 @@ const App = () => {
         const Component = panel.component;
         return (
           <div key={panel.id} className={i === 0 ? 'panel-show' : 'panel-hidden'}>
-            {panels.length > 1 && (
-              <div className="panels-tabs">
-                {panels.map(panel => (
-                  <button
-                    key={panel.id}
-                    className={panel.id === selectedPanelId ? 'panel-active' : undefined}
-                    onClick={() => setSelectedPanelId(panel.id)}
-                  >
-                    {panel.id}
-                  </button>
-                ))}
-              </div>
-            )}
+            <PanelsTabs panels={panels} />
             <Component />
           </div>
         )

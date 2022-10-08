@@ -28,6 +28,7 @@ export type PanelsProviderProps = {
 
 export type PanelProps = {
   component: () => JSX.Element;
+  title: string;
   id: string;
 }
 
