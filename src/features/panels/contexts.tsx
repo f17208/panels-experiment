@@ -41,8 +41,8 @@ export const PanelsProvider: FC<PanelsProviderProps> = ({
     setPanels(currentPanels => {
       if (currentPanels.find(p => p.id === panel.id)) return currentPanels;
       return [
-        panel,
         ...currentPanels,
+        panel,
       ];
     })
   }, [setPanels]);

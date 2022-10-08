@@ -26,7 +26,9 @@ const App = () => {
 
   useEffect(() => {
     setSelectedPanelId(pId => {
-      return panels[0]?.id || pId;
+      return panels.length
+        ? panels[panels.length - 1]?.id 
+        : pId;
     })
   }, [setSelectedPanelId, panels]);
 
