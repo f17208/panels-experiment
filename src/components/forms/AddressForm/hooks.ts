@@ -2,9 +2,15 @@ import { useForm, UseFormProps } from 'react-hook-form';
 import { IAddressForm } from './types';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSchemaValidation } from '../../../hooks/useSchemaValidation';
+import { usePreloadFormStateFields } from '../../../hooks/usePreloadFormStateFields';
+import { UseFormOptions } from '../../../types/form-options';
 
-export const useAddressForm = function({ defaultValues, ...rest }: UseFormProps<IAddressForm>) {
+export interface UseAddressFormOptions extends UseFormOptions {}
+
+export const useAddressForm = function(
+  { defaultValues, ...rest }: UseFormProps<IAddressForm>,
+  options?: UseAddressFormOptions
+) {
   const form = useForm<IAddressForm>({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -20,7 +26,7 @@ export const useAddressForm = function({ defaultValues, ...rest }: UseFormProps<
     ...rest,
   });
 
-  useSchemaValidation(schema, form)
+  usePreloadFormStateFields(form, options?.preloadFormStateFields || []);
 
   return form;
 }

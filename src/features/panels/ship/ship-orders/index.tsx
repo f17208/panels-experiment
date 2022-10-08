@@ -25,19 +25,20 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
     defaultValues: {
       ...order.senderAddress
     },
-  });
+  }, { preloadFormStateFields: ['isValid'] });
 
   const recipientAddressForm = useAddressForm({
     defaultValues: {
       ...order.recipientAddress
     },
-  });
+  }, { preloadFormStateFields: ['isValid'] });
 
   const editParcelsForm = useParcelForm({
     defaultValues: {
       ...order.parcel,
     },
-  })
+  }, { preloadFormStateFields: ['isValid'] });
+
   const title = `Ship order ${order.id}`;
 
   return (

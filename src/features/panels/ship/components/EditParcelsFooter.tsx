@@ -19,9 +19,9 @@ export const EditParcelsFooter: FC<EditParcelsFooterProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const parcelValid = parcelForm.formState.isValid;
-  const recipientAddressValid = recipientAddressForm.formState.isValid;
-  const senderAddressValid = senderAddressForm.formState.isValid;
+  const { isValid: parcelValid } = parcelForm.formState;
+  const { isValid: recipientAddressValid } = recipientAddressForm.formState;
+  const { isValid: senderAddressValid } = senderAddressForm.formState;
   const addressesValid = recipientAddressValid && senderAddressValid;
 
   const nextRouteConfig: { to: string, title: string } = useMemo(() => {

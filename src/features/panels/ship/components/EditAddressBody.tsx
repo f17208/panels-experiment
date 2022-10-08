@@ -34,7 +34,6 @@ export const EditAddressBody: FC<EditAddressBodyProps> = ({
           <AddressForm form={senderForm} onSubmit={onSubmit} />
         </Grid>
       </Grid>
-      
     </Box>
   );
 };

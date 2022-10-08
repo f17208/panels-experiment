@@ -2,9 +2,15 @@ import { useForm, UseFormProps } from 'react-hook-form';
 import { IParcelForm } from './types';
 import schema from './schema';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSchemaValidation } from '../../../hooks/useSchemaValidation';
+import { usePreloadFormStateFields } from '../../../hooks/usePreloadFormStateFields';
+import { UseFormOptions } from '../../../types/form-options';
 
-export const useParcelForm = function({ defaultValues, ...rest }: UseFormProps<IParcelForm>) {
+export interface UseParcelFormOptions extends UseFormOptions {}
+
+export const useParcelForm = function(
+  { defaultValues, ...rest }: UseFormProps<IParcelForm>,
+  options?: UseParcelFormOptions,
+) {
   const form = useForm<IParcelForm>({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -19,7 +25,7 @@ export const useParcelForm = function({ defaultValues, ...rest }: UseFormProps<I
     },
   });
 
-  useSchemaValidation(schema, form)
+  usePreloadFormStateFields(form, options?.preloadFormStateFields || []);
 
   return form;
 }

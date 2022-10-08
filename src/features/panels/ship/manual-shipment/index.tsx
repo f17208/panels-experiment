@@ -25,13 +25,15 @@ export const ManualShipmentFlow = ({ panelId }: ManualShipmentFlowProps) => {
     defaultValues: {
       ...userAddress,
     },
-  });
+  }, { preloadFormStateFields: ['isValid' ] });
+
   const recipientAddressForm = useAddressForm({
     defaultValues: {},
-  });
+  }, { preloadFormStateFields: ['isValid' ] });
+
   const editParcelsForm = useParcelForm({
     defaultValues: {},
-  });
+  }, { preloadFormStateFields: ['isValid' ] });
 
   return (
     <SenderAddressFormContext.Provider value={senderAddressForm}>

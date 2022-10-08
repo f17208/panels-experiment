@@ -18,11 +18,11 @@ export const EditAddressFooter: FC<EditAddressFooterProps> = ({
   recipientAddressForm,
   parcelForm
 }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const { isValid: parcelValid } = parcelForm.formState;
+  const { isValid: recipientAddressValid } = recipientAddressForm.formState;
+  const { isValid: senderAddressValid} = senderAddressForm.formState;
 
-  const parcelValid = parcelForm.formState.isValid;
-  const recipientAddressValid = recipientAddressForm.formState.isValid;
-  const senderAddressValid = senderAddressForm.formState.isValid;
   const addressesValid = recipientAddressValid && senderAddressValid;
 
   const nextRouteConfig: { to: string, title: string } = useMemo(() => {
