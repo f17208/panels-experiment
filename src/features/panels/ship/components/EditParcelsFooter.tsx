@@ -1,15 +1,22 @@
 import { Box, Button } from "@mui/material";
-import { useContext, useMemo } from "react";
+import { FC, useMemo } from "react";
+import { UseFormReturn } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { RecipientAddressFormContext, SenderAddressFormContext } from "..";
-import { ParcelFormContext } from "../../../../components/forms/ParcelForm";
+import { IAddressForm } from "../../../../components/forms/AddressForm";
+import { IParcelForm } from "../../../../components/forms/ParcelForm";
 import { ShipOrderFlowSteps } from "../constants";
 
-export const EditParcelsFooter = () => {
-  const recipientAddressForm = useContext(RecipientAddressFormContext)!;
-  const senderAddressForm = useContext(SenderAddressFormContext)!;
-  const parcelForm = useContext(ParcelFormContext)!;
+export type EditParcelsFooterProps = {
+  senderAddressForm: UseFormReturn<IAddressForm>;
+  recipientAddressForm: UseFormReturn<IAddressForm>;
+  parcelForm: UseFormReturn<IParcelForm>;
+};
 
+export const EditParcelsFooter: FC<EditParcelsFooterProps> = ({
+  senderAddressForm,
+  recipientAddressForm,
+  parcelForm,
+}) => {
   const navigate = useNavigate();
 
   const parcelValid = parcelForm.formState.isValid;

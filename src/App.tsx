@@ -9,7 +9,7 @@ import {
 import './App.css';
 
 import { ToShipPage } from "./features/pages/to-ship/ToShip.page";
-import { PanelsTabs } from "./features/panels/components/PanelTabs";
+import { PanelsTabs } from "./features/panels/ship/components/PanelTabs";
 
 import { PanelsProvider, usePanels } from "./features/panels/contexts";
 

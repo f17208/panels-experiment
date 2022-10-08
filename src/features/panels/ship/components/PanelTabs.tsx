@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { PanelProps, usePanels } from "../contexts";
+import { PanelProps, usePanels } from "../../contexts";
 
 export type PanelsTabsProps = { 
   panels: PanelProps[];
@@ -23,14 +23,14 @@ export const PanelsTabs: FC<PanelsTabsProps> = ({ panels }) => {
     <div className="panels-tabs">
       {panels.map(panel => (
         <button
-          style={{ cursor: 'pointer', padding: '5px 10px' }}
+          style={{ padding: '5px 10px' }}
           key={panel.id}
           className={panel.id === selectedPanelId ? 'panel-active' : undefined}
           onClick={() => setSelectedPanelId(panel.id)}
         >
           {panel.title}
           <span
-            style={{ marginLeft: 8 }}
+            style={{ marginLeft: 8, cursor: 'pointer' }}
             onClick={() => removePanel(panel.id)}
           >
             x

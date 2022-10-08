@@ -1,16 +1,21 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { FC, useCallback, useContext } from "react";
-import { AddressForm, IAddressForm } from "../../../components/forms/AddressForm";
-import { RecipientAddressFormContext, SenderAddressFormContext } from "../ship-orders";
+import { FC, useCallback } from "react";
+import { UseFormReturn } from "react-hook-form";
+import { AddressForm, IAddressForm } from "../../../../components/forms/AddressForm";
 import { EditOrderTabLinks } from "./EditOrderNavLinks";
 
-export const EditAddressBody: FC = () => {
+export type EditAddressBodyProps = {
+  senderForm: UseFormReturn<IAddressForm>;
+  recipientForm: UseFormReturn<IAddressForm>;
+};
+
+export const EditAddressBody: FC<EditAddressBodyProps> = ({
+  senderForm, 
+  recipientForm,
+}) => {
   const onSubmit = useCallback((values: IAddressForm) => {
     console.log('Address', values);
   }, []);
-
-  const senderForm = useContext(SenderAddressFormContext)!;
-  const recipientForm = useContext(RecipientAddressFormContext)!;
 
   return (
     <Box p={2}>

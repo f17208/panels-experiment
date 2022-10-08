@@ -1,15 +1,16 @@
 import { MemoryRouter, Navigate, Route, Routes } from "react-router-dom";
-import { getAddressContext, useAddressForm } from "../../../components/forms/AddressForm";
-import { ParcelFormContext, useParcelForm } from "../../../components/forms/ParcelForm";
-import { Order } from "../../../types/order";
+import { getAddressContext, useAddressForm } from "../../../../components/forms/AddressForm";
+import { ParcelFormContext, useParcelForm } from "../../../../components/forms/ParcelForm";
+import { Order } from "../../../../types/order";
 import { EditAddressBody } from "../components/EditAddressBody";
+import { EditAddressFooter } from "../components/EditAddressFooter";
 import { EditParcelsBody } from "../components/EditParcelBody";
+import { EditParcelsFooter } from "../components/EditParcelsFooter";
 import { PanelLayout } from "../components/PanelLayout";
 import { RatesBody } from "../components/RatesBody";
-import { EditAddressFooter } from "./components/EditAddressFooter";
-import { EditParcelsFooter } from "./components/EditParcelsFooter";
-import { RatesFooter } from "./components/RatesFooter";
-import { ShipOrderFlowSteps } from "./constants";
+import { RatesFooter } from "../components/RatesFooter";
+
+import { ShipOrderFlowSteps } from "../constants";
 
 export const SenderAddressFormContext = getAddressContext();
 export const RecipientAddressFormContext = getAddressContext();
@@ -37,7 +38,6 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
       ...order.parcel,
     },
   })
-
   const title = `Ship order ${order.id}`;
 
   return (
@@ -52,8 +52,19 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
                 element={
                   <PanelLayout
                     header={title}
-                    body={<EditAddressBody />}
-                    footer={<EditAddressFooter />}
+                    body={
+                      <EditAddressBody
+                        senderForm={senderAddressForm}
+                        recipientForm={recipientAddressForm}
+                      />
+                    }
+                    footer={
+                      <EditAddressFooter
+                        senderAddressForm={senderAddressForm}
+                        recipientAddressForm={recipientAddressForm}
+                        parcelForm={editParcelsForm}
+                      />
+                    }
                   />
                 }
               />
@@ -62,8 +73,14 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
                 element={
                   <PanelLayout
                     header={title}
-                    body={<EditParcelsBody />}
-                    footer={<EditParcelsFooter />}
+                    body={<EditParcelsBody parcelForm={editParcelsForm} />}
+                    footer={
+                      <EditParcelsFooter
+                        senderAddressForm={senderAddressForm}
+                        recipientAddressForm={recipientAddressForm}
+                        parcelForm={editParcelsForm}
+                      />
+                    }
                   />
                 }
               />

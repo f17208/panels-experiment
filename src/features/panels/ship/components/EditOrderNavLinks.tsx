@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
-import { LinkTabProps, TabLinks } from "../../../components/navigation/TabLinks";
-import { ShipOrderFlowSteps } from "../ship-orders/constants";
+import { LinkTabProps, TabLinks } from "../../../../components/navigation/TabLinks";
+import { ShipOrderFlowSteps } from "../constants";
 
 const links: LinkTabProps[] = [
   {

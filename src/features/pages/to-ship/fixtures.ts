@@ -35,15 +35,15 @@ const fixtures: Order[] = [
     senderAddress: {
       street1: 'Via Verdi',
       street2: '19',
-      city: 'Firenze',
-      zip: '50121',
+      city: 'Livorno',
+      zip: '57100',
       country: 'it',
     },
     recipientAddress: {
       street1: 'Via Giusti',
       street2: '1',
-      city: 'Sesto Fiorentino',
-      zip: '50019',
+      city: 'Pisa',
+      zip: '56121',
       country: 'it',
     }
   }

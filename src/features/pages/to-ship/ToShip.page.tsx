@@ -3,7 +3,8 @@ import { Box } from "@mui/system";
 import { useCallback, useMemo } from "react";
 import { Order } from "../../../types/order";
 import { usePanels } from "../../panels/contexts";
-import { ShipOrderFlow } from "../../panels/ship-orders";
+import { ManualShipmentFlow } from "../../panels/ship/manual-shipment";
+import { ShipOrderFlow } from "../../panels/ship/ship-orders";
 import { MainNavLinks } from "../MainNavLinks";
 import fixtures from "./fixtures";
 
@@ -22,6 +23,18 @@ export const ToShipPage = () => {
     [addPanel],
   );
 
+  const onManualShipment = useCallback(
+    () => {
+      const panelId = 'manual-shipment';
+      addPanel({
+        id: panelId,
+        title: 'Manual Shipment',
+        component: () => <ManualShipmentFlow panelId={panelId} />
+      })
+    },
+    [addPanel],
+  );
+
   const orders: Order[] = useMemo(() => {
     return fixtures;
   }, []);
@@ -29,8 +42,16 @@ export const ToShipPage = () => {
   return (
     <div>
       <MainNavLinks />
-      <Box py={2}>
+      <Box py={2} display="flex" justifyContent="space-between">
         <Typography variant="h4">To Ship</Typography>
+        <Button
+          size="small"
+          color="primary"
+          variant="contained"
+          onClick={onManualShipment}
+        >
+          Manual Shipment
+        </Button>
       </Box>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
