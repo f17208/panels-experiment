@@ -26,19 +26,23 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
     defaultValues: {
       ...order.senderAddress
     },
-  }, { preloadFormStateFields: ['isValid'] });
+  });
 
   const recipientAddressForm = useAddressForm({
     defaultValues: {
       ...order.recipientAddress
     },
-  }, { preloadFormStateFields: ['isValid'] });
+  });
 
   const editParcelsForm = useParcelForm({
     defaultValues: {
       ...order.parcel,
     },
-  }, { preloadFormStateFields: ['isValid'] });
+  });
+
+  // const { isValid: senderAddressFormIsValid } = senderAddressForm.formState;
+  // const { isValid: recipientAddressFormIsValid } = recipientAddressForm.formState;
+  // const { isValid: editParcelsFormIsValid } = editParcelsForm.formState;
 
   const title = `Ship order ${order.id}`;
 

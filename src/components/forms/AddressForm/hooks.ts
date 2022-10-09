@@ -2,15 +2,15 @@ import { useForm, UseFormProps } from 'react-hook-form';
 import { IAddressForm } from './types';
 import schema from './schema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { usePreloadFormStateFields } from '../../../hooks/usePreloadFormStateFields';
-import { UseFormOptions } from '../../../types/form-options';
+import { usePreloadFormStateFields, UsePreloadFormStateFieldsOptions } from '../../../hooks/usePreloadFormStateFields';
 
-export interface UseAddressFormOptions extends UseFormOptions {}
+export interface UseAddressFormOptions {}
 
 export const useAddressForm = function(
-  { defaultValues, ...rest }: UseFormProps<IAddressForm>,
-  options?: UseAddressFormOptions
+  formOptions?: UseFormProps<IAddressForm>,
+  preloadOptions?: UsePreloadFormStateFieldsOptions<IAddressForm>
 ) {
+  const { defaultValues, ...rest } = formOptions || {};
   const form = useForm<IAddressForm>({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -26,7 +26,7 @@ export const useAddressForm = function(
     ...rest,
   });
 
-  usePreloadFormStateFields(form, options?.preloadFormStateFields || []);
+  usePreloadFormStateFields(form, preloadOptions);
 
   return form;
 }
