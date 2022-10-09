@@ -1,7 +1,6 @@
 import { Grid, TextField } from "@mui/material";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
-import { ParcelFormContext } from "./contexts";
 import { IParcelForm } from "./types";
 
 export type ParcelFormProps = {
@@ -24,6 +23,7 @@ export const ParcelForm: FC<ParcelFormProps> = ({ form, onSubmit }) => {
                 onChange={onChange}
                 value={value}
                 fullWidth
+                type="number"
                 label="Width"
                 size="small"
                 error={!!fieldState.error}
@@ -44,6 +44,7 @@ export const ParcelForm: FC<ParcelFormProps> = ({ form, onSubmit }) => {
                 onChange={onChange}
                 value={value}
                 fullWidth
+                type="number"
                 label="Height"
                 size="small"
                 error={!!fieldState.error}
@@ -64,6 +65,7 @@ export const ParcelForm: FC<ParcelFormProps> = ({ form, onSubmit }) => {
                 onChange={onChange}
                 value={value}
                 fullWidth
+                type="number"
                 label="Length"
                 size="small"
                 error={!!fieldState.error}
@@ -83,6 +85,7 @@ export const ParcelForm: FC<ParcelFormProps> = ({ form, onSubmit }) => {
               <TextField
                 onChange={onChange}
                 value={value}
+                type="number"
                 label="Weight"
                 size="small"
                 fullWidth
@@ -98,9 +101,4 @@ export const ParcelForm: FC<ParcelFormProps> = ({ form, onSubmit }) => {
       </Grid>
     </form>
   )
-}
-
-export const ParcelFormInContext: FC<Omit<ParcelFormProps, 'form'>> = ({ ...props }) => {
-  const form = useContext(ParcelFormContext)!;
-  return <ParcelForm form={form} {...props} />;
 }

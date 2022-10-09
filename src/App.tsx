@@ -12,6 +12,8 @@ import { ToShipPage } from "./features/pages/to-ship/ToShip.page";
 import { PanelsTabs } from "./features/panels/ship/components/PanelTabs";
 
 import { PanelsProvider, usePanels } from "./features/panels/contexts";
+import { SetupPage } from "./features/pages/setup-2/Setup.page";
+import { ShippedPage } from "./features/pages/shipped/Shipped.page";
 
 const App = () => {
   const { panels } = usePanels();
@@ -32,13 +34,18 @@ const App = () => {
     })
   }, [setSelectedPanelId, panels]);
 
+  const firstPage = sessionStorage.getItem('setupDone')
+    ? '/to-ship'
+    : '/setup'
+
   return (
     <div className="main-container">
       <div className="main-view">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/to-ship" />} />
-            {/* <Route path="/shipped" element={<Shipped />} /> */}
+            <Route path="/" element={<Navigate to={firstPage} />} />
+            <Route path="/setup" element={<SetupPage />} />
+            <Route path="/shipped" element={<ShippedPage />} />
             <Route path="/to-ship" element={<ToShipPage />} />
           </Routes>
         </BrowserRouter>

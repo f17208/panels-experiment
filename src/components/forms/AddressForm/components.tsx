@@ -1,7 +1,6 @@
 import { FormControl, FormHelperText, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
-import { AddressFormContext } from "./contexts";
 import { IAddressForm } from "./types";
 
 export type AddressFormProps = {
@@ -111,9 +110,4 @@ export const AddressForm: FC<AddressFormProps> = ({ form, onSubmit }) => {
         </Grid>
     </form>
   )
-}
-
-export const AddressFormInContext: FC<Omit<AddressFormProps, 'form'>> = ({ ...props }) => {
-  const form = useContext(AddressFormContext)!;
-  return <AddressForm form={form} {...props} />;
 }

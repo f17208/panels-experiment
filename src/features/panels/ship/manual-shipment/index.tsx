@@ -1,6 +1,6 @@
 import { MemoryRouter, Navigate, Route, Routes } from "react-router-dom";
 import { getAddressContext, useAddressForm } from "../../../../components/forms/AddressForm";
-import { ParcelFormContext, useParcelForm } from "../../../../components/forms/ParcelForm";
+import { getParcelContext, useParcelForm } from "../../../../components/forms/ParcelForm";
 import { ShipOrderFlowSteps } from "../constants";
 import { PanelLayout } from "../components/PanelLayout";
 import { EditAddressBody } from "../components/EditAddressBody";
@@ -13,6 +13,7 @@ import { userAddress } from "../user.fixture";
 
 export const SenderAddressFormContext = getAddressContext();
 export const RecipientAddressFormContext = getAddressContext();
+export const ParcelFormContext = getParcelContext();
 
 export type ManualShipmentFlowProps = {
   panelId: string;

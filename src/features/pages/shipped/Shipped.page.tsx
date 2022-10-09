@@ -1,10 +1,13 @@
+import { Box, Typography } from "@mui/material";
 import { MainNavLinks } from "../MainNavLinks";
 
 export const ShippedPage = () => { 
   return (
-    <div>
+    <Box >
       <MainNavLinks />
-      <h1>To Ship</h1>
-    </div>
+      <Box py={2}>
+        <Typography variant="h4">Shipped</Typography>
+      </Box>
+    </Box>
   )
 };

@@ -40,7 +40,7 @@ export const ToShipPage = () => {
   }, []);
 
   return (
-    <div>
+    <Box>
       <MainNavLinks />
       <Box py={2} display="flex" justifyContent="space-between">
         <Typography variant="h4">To Ship</Typography>
@@ -91,6 +91,6 @@ export const ToShipPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   )
 };
