@@ -12,8 +12,8 @@ import { ToShipPage } from "./features/pages/to-ship/ToShip.page";
 import { PanelsTabs } from "./features/panels/ship/components/PanelTabs";
 
 import { PanelsProvider, usePanels } from "./features/panels/contexts";
-// import { SetupPage } from "./features/pages/setup/Setup.page";
-import { SetupPage } from "./features/pages/setup-2/Setup.page";
+import { SetupPage } from "./features/pages/setup/Setup.page";
+// import { SetupPage } from "./features/pages/setup-2/Setup.page";
 import { ShippedPage } from "./features/pages/shipped/Shipped.page";
 
 const App = () => {

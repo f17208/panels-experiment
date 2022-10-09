@@ -42,7 +42,7 @@ export const ToShipPage = () => {
   return (
     <Box>
       <MainNavLinks />
-      <Box py={2} display="flex" justifyContent="space-between">
+      <Box p={2} display="flex" justifyContent="space-between">
         <Typography variant="h4">To Ship</Typography>
         <Button
           size="small"
@@ -76,7 +76,7 @@ export const ToShipPage = () => {
                 <TableCell>{order.senderAddress.city}</TableCell>
                 <TableCell>{order.recipientAddress.city}</TableCell>
                 <TableCell>{order.parcel.weight} kg</TableCell>
-                <TableCell align="center">
+                <TableCell align="right">
                   <Button
                     onClick={() => onShipOrder(order)}
                     size="small"

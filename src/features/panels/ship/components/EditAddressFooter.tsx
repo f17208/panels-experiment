@@ -6,7 +6,6 @@ import { IAddressForm } from "../../../../components/forms/AddressForm";
 import { IParcelForm } from "../../../../components/forms/ParcelForm";
 import { ShipOrderFlowSteps } from "../constants";
 
-
 export type EditAddressFooterProps = {
   senderAddressForm: UseFormReturn<IAddressForm>;
   recipientAddressForm: UseFormReturn<IAddressForm>;
@@ -21,38 +20,42 @@ export const EditAddressFooter: FC<EditAddressFooterProps> = ({
   const navigate = useNavigate()
   const { isValid: parcelValid } = parcelForm.formState;
   const { isValid: recipientAddressValid } = recipientAddressForm.formState;
-  const { isValid: senderAddressValid} = senderAddressForm.formState;
+  const { isValid: senderAddressValid } = senderAddressForm.formState;
 
   const addressesValid = recipientAddressValid && senderAddressValid;
 
-  const nextRouteConfig: { to: string, title: string } = useMemo(() => {
+  const btnConfig: {
+    disabled?: boolean;
+    onClick?: () => void;
+    title: string;
+  } = useMemo(() => {
     if (!addressesValid) {
       return {
-        to: ShipOrderFlowSteps.EditAddress,
+        disabled: true,
         title: 'Fill missing data',
       }
     }
     if (!parcelValid) {
       return {
-        to: ShipOrderFlowSteps.EditParcels,
+        onClick: () => navigate(ShipOrderFlowSteps.EditParcels),
         title: 'Next: edit parcels',
       }
     }
     return {
-      to: ShipOrderFlowSteps.Rates,
+      onClick: () => navigate(ShipOrderFlowSteps.Rates),
       title: 'Next: calculate rates',
     }
-  }, [addressesValid, parcelValid]);
+  }, [addressesValid, navigate, parcelValid]);
 
   return (
     <Box p={2}>
       <Button
         variant="contained"
         color="primary"
-        disabled={!addressesValid}
-        onClick={() => navigate(nextRouteConfig.to)}
+        disabled={btnConfig.disabled}
+        onClick={btnConfig.onClick}
       >
-        {nextRouteConfig.title}
+        {btnConfig.title}
       </Button>
     </Box>
   )

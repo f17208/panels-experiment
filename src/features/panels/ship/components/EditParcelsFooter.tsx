@@ -24,34 +24,38 @@ export const EditParcelsFooter: FC<EditParcelsFooterProps> = ({
   const { isValid: senderAddressValid } = senderAddressForm.formState;
   const addressesValid = recipientAddressValid && senderAddressValid;
 
-  const nextRouteConfig: { to: string, title: string } = useMemo(() => {
+  const btnConfig: {
+    disabled?: boolean;
+    onClick?: () => void;
+    title: string;
+  } = useMemo(() => {
     if (!parcelValid) {
       return {
-        to: ShipOrderFlowSteps.EditParcels,
+        disabled: true,
         title: 'Fill missing data',
       }
     }
     if (!addressesValid) {
       return {
-        to: ShipOrderFlowSteps.EditAddress,
-        title: 'Next: edit address',
+        onClick: () => navigate(ShipOrderFlowSteps.EditAddress),
+        title: 'Next: complete address',
       }
     }
     return {
-      to: ShipOrderFlowSteps.Rates,
+      onClick: () => navigate(ShipOrderFlowSteps.Rates),
       title: 'Next: calculate rates',
     }
-  }, [parcelValid, addressesValid]);
+  }, [parcelValid, addressesValid, navigate]);
 
   return (
     <Box p={2}>
       <Button
         variant="contained"
         color="primary"
-        disabled={!parcelValid}
-        onClick={() => navigate(nextRouteConfig.to)}
+        disabled={btnConfig.disabled}
+        onClick={btnConfig.onClick}
       >
-        {nextRouteConfig.title}
+        {btnConfig.title}
       </Button>
     </Box>
   )

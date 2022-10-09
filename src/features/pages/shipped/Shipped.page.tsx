@@ -3,9 +3,9 @@ import { MainNavLinks } from "../MainNavLinks";
 
 export const ShippedPage = () => { 
   return (
-    <Box >
+    <Box>
       <MainNavLinks />
-      <Box py={2}>
+      <Box p={2}>
         <Typography variant="h4">Shipped</Typography>
       </Box>
     </Box>
