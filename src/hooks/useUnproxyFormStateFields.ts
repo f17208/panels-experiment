@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { FieldValues, FormState, UseFormReturn } from 'react-hook-form';
 
-export interface UsePreloadFormStateFieldsOptions<F extends FieldValues> {
+export interface UseUnproxyFormStateFieldsOptions<F extends FieldValues> {
   fields?: (keyof FormState<F>)[];
 }
 
@@ -23,11 +23,11 @@ export interface UsePreloadFormStateFieldsOptions<F extends FieldValues> {
  * component, in order to correctly share the updated value of the formState
  * (with children components).
  */
-export const usePreloadFormStateFields = function<
+export const useUnproxyFormStateFields = function<
   F extends FieldValues,
 >(
   form: UseFormReturn<F>,
-  options?: UsePreloadFormStateFieldsOptions<F>,
+  options?: UseUnproxyFormStateFieldsOptions<F>,
 ) {
   const { fields } = options || {};
 

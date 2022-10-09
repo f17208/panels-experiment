@@ -2,11 +2,11 @@ import { useForm, UseFormProps } from 'react-hook-form';
 import { IParcelForm } from './types';
 import schema from './schema';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { usePreloadFormStateFields, UsePreloadFormStateFieldsOptions } from '../../../hooks/usePreloadFormStateFields';
+import { useUnproxyFormStateFields, UseUnproxyFormStateFieldsOptions } from '../../../hooks/useUnproxyFormStateFields';
 
 export const useParcelForm = function(
   formOptions?: UseFormProps<IParcelForm>,
-  preloadOptions?: UsePreloadFormStateFieldsOptions<IParcelForm>,
+  unproxyOptions?: UseUnproxyFormStateFieldsOptions<IParcelForm>,
 ) {
   const { defaultValues, ...rest } = formOptions || {};
   const form = useForm<IParcelForm>({
@@ -23,7 +23,7 @@ export const useParcelForm = function(
     },
   });
 
-  usePreloadFormStateFields(form, preloadOptions);
+  useUnproxyFormStateFields(form, unproxyOptions);
 
   return form;
 }
