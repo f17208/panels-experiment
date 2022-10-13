@@ -1,23 +1,22 @@
 import { Close } from "@mui/icons-material";
 import { IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Dispatch, FC, SetStateAction } from "react";
-import { PanelProps, usePanels } from "../../contexts";
+import { FC, useCallback } from "react";
+import { usePanels } from "../../contexts";
 
 const CLOSE_ICON_SIZE = 16;
 
-export type PanelsTabsProps = { 
-  panels: PanelProps[];
-  selectedPanelId: string | null;
-  setSelectedPanelId: Dispatch<SetStateAction<string | null>>;
-}
+export const PanelsTabs: FC = () => {
+  const {
+    removePanel,
+    panels,
+    selectedPanelId,
+    setSelectedPanelId,
+  } = usePanels();
 
-export const PanelsTabs: FC<PanelsTabsProps> = ({
-  panels,
-  selectedPanelId,
-  setSelectedPanelId,
-}) => {
-  const { removePanel } = usePanels();
+  const onClose = useCallback((panelId: string) => {
+    removePanel(panelId, panels.length === 1 ? 500 : 0);
+  }, [panels, removePanel]);
 
   return (
     <Box className="panels-tabs" style={{ overflow: 'auto' }}>
@@ -27,7 +26,7 @@ export const PanelsTabs: FC<PanelsTabsProps> = ({
           alignItems="center"
           style={{ padding: '5px 10px', flexWrap: 'nowrap' }}
           key={panel.id}
-          className={panel.id === selectedPanelId ? 'panel-active' : undefined}
+          className={panel.id === selectedPanelId ? 'panel-tab-active' : undefined}
           onClick={() => setSelectedPanelId(panel.id)}
         >
           <Typography variant="caption" whiteSpace="nowrap">{panel.title}</Typography>
@@ -38,7 +37,7 @@ export const PanelsTabs: FC<PanelsTabsProps> = ({
               width: CLOSE_ICON_SIZE,
               height: CLOSE_ICON_SIZE,
             }}
-            onClick={() => removePanel(panel.id)}
+            onClick={() => onClose(panel.id)}
           >
             <Close
               style={{

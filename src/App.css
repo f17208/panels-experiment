@@ -1,5 +1,4 @@
 .panel {
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -24,12 +23,13 @@
 
 .main-view {
   padding: 18px;
-  flex-grow: 1;
   height: 100%;
+  flex-grow: 1;
+  transition: all ease 0.5s;
 }
 
-.panel-show {
-  width: 440px;
+.panel-selected {
+  height: 100%;
 }
 
 .panel-hidden {
@@ -54,6 +54,22 @@
   border: 1px solid gray;
 }
 
-.panels-tabs .panel-active {
+.panels-tabs .panel-tab-active {
   background: white;
+}
+
+.panels-container {
+  transition: all ease-in 0.2s;
+  overflow: hidden;
+  padding-left: 4px;
+  padding-bottom: 4px;
+  height: 100%;
+}
+
+.panels-open {
+  width: 440px;
+}
+
+.panels-closed {
+  width: 0;
 }

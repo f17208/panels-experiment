@@ -1,8 +1,17 @@
-import { Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, TextField, Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { Box } from "@mui/system";
 
 export interface ISetupForm {
   isPizzaBetterThanSushi: boolean;
@@ -49,12 +58,12 @@ export const SetupPage = () => {
               render={({ field: { onChange, value }, fieldState }) => (
                 <TextField
                   fullWidth
-                  size="small" 
+                  size="small"
                   onChange={onChange}
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                   value={value}
-                  label="Foo" 
+                  label="Foo"
                 />
               )}
             />
@@ -86,7 +95,7 @@ export const SetupPage = () => {
                 <TextField
                   fullWidth
                   type="number"
-                  size="small" 
+                  size="small"
                   onChange={onChange} 
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}

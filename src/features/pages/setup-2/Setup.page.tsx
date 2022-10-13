@@ -23,7 +23,7 @@ export const SetupPage = () => {
     },
   });
 
-  console.log('[setup page] render')
+  console.log('[setup page] render');
   // console.log('[setup page] isValid', form.formState.isValid);
 
   const onSubmit = useCallback((values: ISetupForm) => {
@@ -54,7 +54,7 @@ export const SetupPage = () => {
           )
           : (
             <Box display="flex" justifyContent="center">
-              <CircularProgress />
+              <CircularProgress />  
             </Box>
           )
       }

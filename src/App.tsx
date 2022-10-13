@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useState } from "react";
 import {
   BrowserRouter,
   Navigate,
@@ -12,28 +11,12 @@ import { ToShipPage } from "./features/pages/to-ship/ToShip.page";
 import { PanelsTabs } from "./features/panels/ship/components/PanelTabs";
 
 import { PanelsProvider, usePanels } from "./features/panels/contexts";
-import { SetupPage } from "./features/pages/setup/Setup.page";
-// import { SetupPage } from "./features/pages/setup-2/Setup.page";
+// import { SetupPage } from "./features/pages/setup/Setup.page";
+import { SetupPage } from "./features/pages/setup-2/Setup.page";
 import { ShippedPage } from "./features/pages/shipped/Shipped.page";
 
 const App = () => {
-  const { panels } = usePanels();
-  const [selectedPanelId, setSelectedPanelId] = useState<string | null>(null);
-
-  const sortedPanels = useMemo(() => {
-    return [
-      ...panels.filter(p => p.id === selectedPanelId),
-      ...panels.filter(p => p.id !== selectedPanelId),
-    ];
-  }, [selectedPanelId, panels]);
-
-  useEffect(() => {
-    setSelectedPanelId(pId => {
-      return panels.length
-        ? panels[panels.length - 1]?.id 
-        : pId;
-    })
-  }, [setSelectedPanelId, panels]);
+  const { panels, selectedPanelId } = usePanels();
 
   const firstPage = sessionStorage.getItem('setupDone')
     ? '/to-ship'
@@ -41,7 +24,7 @@ const App = () => {
 
   return (
     <div className="main-container">
-      <div className="main-view">
+      <div className="main-view" style={{ flexGrow: panels.length ? 1 : 2 }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Navigate to={firstPage} />} />
@@ -52,19 +35,22 @@ const App = () => {
         </BrowserRouter>
       </div>
 
-      { sortedPanels.map((panel, i) => {
-        const Component = panel.component;
-        return (
-          <div key={panel.id} className={i === 0 ? 'panel-show' : 'panel-hidden'}>
-            <PanelsTabs
-              setSelectedPanelId={setSelectedPanelId}
-              selectedPanelId={selectedPanelId}
-              panels={panels}
-            />
-            <Component />
-          </div>
-        )
-      })}
+      <div className={`panels-container ${selectedPanelId && panels.length ? 'panels-open' : 'panels-closed'}`}>
+        { panels.map(panel => {
+          const Component = panel.component;
+          const mustShow = panels.length === 1
+            || selectedPanelId === panel.id;
+          return (
+            <div
+              key={panel.id}
+              className={mustShow ? 'panel-show' : 'panel-hidden'}
+            >
+              <PanelsTabs />
+              <Component />
+            </div>
+          )
+        })}
+      </div>
     </div>
   );
 };
