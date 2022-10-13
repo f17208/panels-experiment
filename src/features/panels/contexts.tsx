@@ -8,13 +8,12 @@ import {
   useCallback,
   SetStateAction,
   Dispatch,
-  useEffect,
 } from 'react';
 
 export interface PanelsContextProps {
   panels: PanelProps[];
   addPanel: (panel: PanelProps) => void;
-  removePanel: (id: string, delay?: number) => void;
+  removePanel: (id: string) => void;
   selectedPanelId: string | null,
   setSelectedPanelId: Dispatch<SetStateAction<string | null>>;
 }
@@ -58,23 +57,25 @@ export const PanelsProvider: FC<PanelsProviderProps> = ({
     })
   }, [setPanels]);
 
-  const removePanel = useCallback(async (id: string, delay = 0) => {
+  const removePanel = useCallback(async (id: string) => {
     const panelsToSet = panels.filter(panel => panel.id !== id);
 
-    console.log('oh porcoddio', panels, id);
     if (selectedPanelId === id) {
       const currentIndex = panels.findIndex(p => p.id === id);
-      console.log('panelindex', currentIndex);
       const nextSelected = panelsToSet.length
         ? panelsToSet[Math.max(panelsToSet.length - 1, currentIndex - 1)].id
-        : null
-      console.log('next', nextSelected);
-      setTimeout(() => setSelectedPanelId(nextSelected));
+        : null;
+
+      setTimeout(
+        () => setSelectedPanelId(nextSelected)
+      );
     }
 
-    setTimeout(() => {
-      setPanels(panelsToSet);
-    }, delay);
+    const delay = panelsToSet.length === 0 ? 500 : 0;
+    setTimeout(
+      () =>setPanels(panelsToSet),
+      delay,
+    );
   }, [setPanels, panels, selectedPanelId, setSelectedPanelId]);
 
   const value = useMemo(

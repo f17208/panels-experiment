@@ -59,7 +59,7 @@
 }
 
 .panels-container {
-  transition: all ease-in 0.2s;
+  transition: all ease-in 0.4s;
   overflow: hidden;
   padding-left: 4px;
   padding-bottom: 4px;
@@ -67,7 +67,7 @@
 }
 
 .panels-open {
-  width: 440px;
+  width: 100%;
 }
 
 .panels-closed {

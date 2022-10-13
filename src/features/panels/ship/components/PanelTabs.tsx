@@ -15,8 +15,8 @@ export const PanelsTabs: FC = () => {
   } = usePanels();
 
   const onClose = useCallback((panelId: string) => {
-    removePanel(panelId, panels.length === 1 ? 500 : 0);
-  }, [panels, removePanel]);
+    removePanel(panelId);
+  }, [removePanel]);
 
   return (
     <Box className="panels-tabs" style={{ overflow: 'auto' }}>
@@ -37,7 +37,10 @@ export const PanelsTabs: FC = () => {
               width: CLOSE_ICON_SIZE,
               height: CLOSE_ICON_SIZE,
             }}
-            onClick={() => onClose(panel.id)}
+            onClick={e => {
+              onClose(panel.id);
+              e.stopPropagation();
+            }}
           >
             <Close
               style={{
