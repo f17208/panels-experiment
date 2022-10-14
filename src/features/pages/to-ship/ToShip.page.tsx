@@ -42,7 +42,7 @@ export const ToShipPage = () => {
   return (
     <Box>
       <MainNavLinks />
-      <Box p={2} display="flex" justifyContent="space-between">
+      <Box p={2} display="flex" justifyContent="space-between" flexWrap="nowrap">
         <Typography variant="h4">To Ship</Typography>
         <Button
           size="small"

@@ -4,7 +4,9 @@ import { Box } from "@mui/system";
 import { FC, useCallback } from "react";
 import { usePanels } from "../../contexts";
 
-const CLOSE_ICON_SIZE = 16;
+import './PanelTabs.css';
+
+const CLOSE_ICON_SIZE = 18;
 
 export const PanelsTabs: FC = () => {
   const {
@@ -18,10 +20,20 @@ export const PanelsTabs: FC = () => {
     removePanel(panelId);
   }, [removePanel]);
 
+  const onRefChange = useCallback(
+    (node: unknown, i: number) => {
+      if (node && i === panels.length - 1) {
+        (node as HTMLDivElement).scrollIntoView();
+      }
+    },
+    [panels],
+  );
+
   return (
     <Box className="panels-tabs" style={{ overflow: 'auto' }}>
-      {panels.map(panel => (
+      {panels.map((panel, i) => (
         <Box
+          ref={node => onRefChange(node, i)}
           display="flex"
           alignItems="center"
           style={{ padding: '5px 10px', flexWrap: 'nowrap' }}

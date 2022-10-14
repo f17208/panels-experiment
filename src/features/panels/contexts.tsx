@@ -66,16 +66,10 @@ export const PanelsProvider: FC<PanelsProviderProps> = ({
         ? panelsToSet[Math.max(panelsToSet.length - 1, currentIndex - 1)].id
         : null;
 
-      setTimeout(
-        () => setSelectedPanelId(nextSelected)
-      );
+      setSelectedPanelId(nextSelected);
     }
 
-    const delay = panelsToSet.length === 0 ? 500 : 0;
-    setTimeout(
-      () =>setPanels(panelsToSet),
-      delay,
-    );
+    setPanels(panelsToSet);
   }, [setPanels, panels, selectedPanelId, setSelectedPanelId]);
 
   const value = useMemo(

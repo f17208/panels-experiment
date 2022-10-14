@@ -2,7 +2,7 @@ import { MemoryRouter, Navigate, Route, Routes } from "react-router-dom";
 import { getAddressContext, useAddressForm } from "../../../../components/forms/AddressForm";
 import { getParcelContext, useParcelForm } from "../../../../components/forms/ParcelForm";
 import { ShipOrderFlowSteps } from "../constants";
-import { PanelLayout } from "../components/PanelLayout";
+import { PanelLayout } from "../../components/PanelLayout";
 import { EditAddressBody } from "../components/EditAddressBody";
 import { EditAddressFooter } from "../components/EditAddressFooter";
 import { EditParcelsBody } from "../components/EditParcelBody";

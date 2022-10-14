@@ -6,7 +6,7 @@ import { EditAddressBody } from "../components/EditAddressBody";
 import { EditAddressFooter } from "../components/EditAddressFooter";
 import { EditParcelsBody } from "../components/EditParcelBody";
 import { EditParcelsFooter } from "../components/EditParcelsFooter";
-import { PanelLayout } from "../components/PanelLayout";
+import { PanelLayout } from "../../components/PanelLayout";
 import { RatesBody } from "../components/RatesBody";
 import { RatesFooter } from "../components/RatesFooter";
 

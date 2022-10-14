@@ -46,6 +46,52 @@ const fixtures: Order[] = [
       zip: '56121',
       country: 'it',
     }
+  },
+  { 
+    id: 'KW14PH6',
+    parcel: {
+      width: 12,
+      length: 22,
+      weight: 17,
+      height: 18
+    },
+    senderAddress: {
+      street1: 'Via Verdi',
+      street2: '19',
+      city: 'Grosseto',
+      zip: '58100',
+      country: 'it',
+    },
+    recipientAddress: {
+      street1: 'Via Giusti',
+      street2: '1',
+      city: 'Viareggio',
+      zip: '55049',
+      country: 'it',
+    }
+  },
+  { 
+    id: 'JX1O09U',
+    parcel: {
+      width: 12,
+      length: 22,
+      weight: 11,
+      height: 18
+    },
+    senderAddress: {
+      street1: 'Via Verdi',
+      street2: '19',
+      city: 'Prato',
+      zip: '59100',
+      country: 'it',
+    },
+    recipientAddress: {
+      street1: 'Piazza Dante',
+      street2: '11',
+      city: 'Borgo San Lorenzo',
+      zip: '50032',
+      country: 'it',
+    }
   }
 ]
 

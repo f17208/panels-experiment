@@ -1,0 +1,19 @@
+.panel {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: space-between;
+  min-width: 200px;
+}
+  
+.panel-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.panel-footer button {
+  width: 100%;
+}

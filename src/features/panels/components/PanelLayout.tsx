@@ -1,6 +1,8 @@
 import { Box, Card, Typography, useTheme } from "@mui/material";
 import { FC, ReactNode } from "react";
 
+import './PanelLayout.css';
+
 export type PanelLayoutProps = {
   header?: ReactNode | string;
   body: ReactNode;
@@ -31,9 +33,9 @@ export const PanelLayout: FC<PanelLayoutProps> = ({ header, body, footer }) => {
             : header
           }
         </Box>
-        <div className="panel-body">
+        <Box className="panel-body">
           {body}
-        </div>
+        </Box>
       </Box>
       <Box className="panel-footer">
         {footer}

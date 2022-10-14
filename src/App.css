@@ -1,34 +1,16 @@
-.panel {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  justify-content: space-between;
-  min-width: 200px;
-}
-
-.main-container {
-  display: flex;
-}
-
-.panel-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.panel-footer button {
-  width: 100%;
+#root {
+  height: 100vh;
 }
 
 .main-view {
   padding: 18px;
   height: 100%;
   flex-grow: 1;
-  transition: all ease 0.5s;
 }
 
-.panel-selected {
+.panel-show {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -39,30 +21,9 @@
   z-index: -1000 !important;
 }
 
-.panels-tabs {
-  border-bottom: 0;
-  display: flex;
-  background: lightgray;
-  box-shadow: inset 0 -.5px 0 gray;
-  border-top-left-radius: 10px;
-  overflow: hidden;
-}
-
-.panels-tabs div {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border: 1px solid gray;
-}
-
-.panels-tabs .panel-tab-active {
-  background: white;
-}
-
 .panels-container {
-  transition: all ease-in 0.5s;
+  /* transition: all ease-in 0.5s; */
   overflow: hidden;
-  padding-left: 4px;
-  padding-bottom: 4px;
   height: 100%;
 }
 
@@ -71,5 +32,5 @@
 }
 
 .panels-closed {
-  width: 0;
+  width: 0 !important;
 }

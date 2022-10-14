@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import { useWindowSize } from 'react-use';
 import {
   BrowserRouter,
   Navigate,
@@ -11,47 +13,86 @@ import { ToShipPage } from "./features/pages/to-ship/ToShip.page";
 import { PanelsTabs } from "./features/panels/ship/components/PanelTabs";
 
 import { PanelsProvider, usePanels } from "./features/panels/contexts";
-// import { SetupPage } from "./features/pages/setup/Setup.page";
-import { SetupPage } from "./features/pages/setup-2/Setup.page";
 import { ShippedPage } from "./features/pages/shipped/Shipped.page";
+
+import { ReflexContainer, ReflexElement, ReflexSplitter } from "react-reflex";
+import 'react-reflex/styles.css'
 
 const App = () => {
   const { panels, selectedPanelId } = usePanels();
+  const { width: windowWidth } = useWindowSize();
 
-  const firstPage = sessionStorage.getItem('setupDone')
-    ? '/to-ship'
-    : '/setup'
+  const panelsElementProps: {
+    flex: number;
+    minSize: number;
+    maxSize: number;
+  } = useMemo(() => {
+    if (panels.length) {
+      if (windowWidth < 400) {
+        // FIXME 
+        return {
+          flex: 1,
+          minSize: windowWidth,
+          maxSize: windowWidth,
+        }
+      }
+      return {
+        flex: 0.3,
+        minSize: 330,
+        maxSize: 880,
+      }
+    } else {
+      return {
+        flex: 0,
+        minSize: 0,
+        maxSize: 0,
+      }
+    }
+  }, [panels, windowWidth]);
 
   return (
-    <div className="main-container">
-      <div className="main-view" style={{ flexGrow: panels.length ? 1 : 2 }}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Navigate to={firstPage} />} />
-            <Route path="/setup" element={<SetupPage />} />
-            <Route path="/shipped" element={<ShippedPage />} />
-            <Route path="/to-ship" element={<ToShipPage />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
+    <ReflexContainer orientation="vertical">
+      <ReflexElement
+        flex={panels.length === 0 ? 1 : undefined}
+        minSize={440}
+      >
+        <div className="main-view">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Navigate to="/to-ship" />} />
+              <Route path="/shipped" element={<ShippedPage />} />
+              <Route path="/to-ship" element={<ToShipPage />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </ReflexElement>
 
-      <div className={`panels-container ${selectedPanelId && panels.length ? 'panels-open' : 'panels-closed'}`}>
-        { panels.map(panel => {
-          const Component = panel.component;
-          const mustShow = panels.length === 1
-            || selectedPanelId === panel.id;
-          return (
-            <div
-              key={panel.id}
-              className={mustShow ? 'panel-show' : 'panel-hidden'}
-            >
-              <PanelsTabs />
-              <Component />
-            </div>
-          )
-        })}
-      </div>
-    </div>
+      <ReflexSplitter />
+
+      <ReflexElement {...panelsElementProps}>
+        <div
+          className={`panels-container ${
+            selectedPanelId && panels.length ? 'panels-open' : 'panels-closed'
+          }`}
+        >
+          { panels.map(panel => {
+            const Component = panel.component;
+            const mustShow = panels.length === 1
+              || selectedPanelId === panel.id;
+            return (
+              <div
+                key={panel.id}
+                className={mustShow ? 'panel-show' : 'panel-hidden'}
+              >
+                <PanelsTabs />
+                <Component />
+              </div>
+            )
+          })}
+        </div>
+      </ReflexElement>
+    </ReflexContainer>
+
   );
 };
 
