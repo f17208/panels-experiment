@@ -1,7 +1,7 @@
 import { Close } from "@mui/icons-material";
 import { IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { FC, useCallback } from "react";
+import { FC, useCallback, useRef } from "react";
 import { usePanels } from "../../contexts";
 
 import './PanelTabs.css';
@@ -20,32 +20,50 @@ export const PanelsTabs: FC = () => {
     removePanel(panelId);
   }, [removePanel]);
 
+  const tabsContainerRef = useRef<unknown>(null);
+
   const onRefChange = useCallback(
-    (node: unknown, i: number) => {
-      if (node && i === panels.length - 1) {
-        (node as HTMLDivElement).scrollIntoView();
+    (node: unknown, id: string) => {
+      if (node && tabsContainerRef.current && id === selectedPanelId) {
+        const element = node as HTMLDivElement;
+        const tabsContainerElement = (tabsContainerRef.current as HTMLDivElement)
+
+        const elemLeft = element.offsetLeft;
+        const elemOffsetWidth = element.offsetWidth;
+        const tabsScrollLeft = tabsContainerElement.scrollLeft;
+        const tabsOffsetWidth = tabsContainerElement.offsetWidth;
+
+        const delta = elemLeft < tabsScrollLeft
+          ? elemLeft  - tabsScrollLeft
+          : (elemLeft + elemOffsetWidth) > tabsScrollLeft + tabsOffsetWidth
+            ? (elemLeft + elemOffsetWidth) - (tabsScrollLeft + tabsOffsetWidth)
+            : undefined;
+
+        if (delta) {
+          tabsContainerElement.scrollBy({
+            left: delta,
+          });
+        }
       }
     },
-    [panels],
+    [selectedPanelId],
   );
 
   return (
-    <Box className="panels-tabs" style={{ overflow: 'auto' }}>
-      {panels.map((panel, i) => (
+    <Box className="panels-tabs" style={{ overflow: 'scroll' }} ref={tabsContainerRef}>
+      {panels.map(panel => (
         <Box
-          ref={node => onRefChange(node, i)}
+          ref={node => onRefChange(node, panel.id)}
           display="flex"
           alignItems="center"
-          style={{ padding: '5px 10px', flexWrap: 'nowrap' }}
           key={panel.id}
-          className={panel.id === selectedPanelId ? 'panel-tab-active' : undefined}
+          className={`panel-tab ${panel.id === selectedPanelId ? 'panel-tab-active' : undefined}`}
           onClick={() => setSelectedPanelId(panel.id)}
         >
           <Typography variant="caption" whiteSpace="nowrap">{panel.title}</Typography>
           <IconButton
+            className="panel-tab-close"
             style={{
-              marginLeft: 8,
-              cursor: 'pointer',
               width: CLOSE_ICON_SIZE,
               height: CLOSE_ICON_SIZE,
             }}

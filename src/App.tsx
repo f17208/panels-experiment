@@ -75,6 +75,7 @@ const App = () => {
             selectedPanelId && panels.length ? 'panels-open' : 'panels-closed'
           }`}
         >
+          <PanelsTabs />
           { panels.map(panel => {
             const Component = panel.component;
             const mustShow = panels.length === 1
@@ -84,7 +85,6 @@ const App = () => {
                 key={panel.id}
                 className={mustShow ? 'panel-show' : 'panel-hidden'}
               >
-                <PanelsTabs />
                 <Component />
               </div>
             )
