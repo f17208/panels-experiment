@@ -92,7 +92,30 @@ const fixtures: Order[] = [
       zip: '50032',
       country: 'it',
     }
-  }
+  },
+  { 
+    id: 'DKL4F80',
+    parcel: {
+      width: 9,
+      length: 12,
+      weight: 4,
+      height: 11
+    },
+    senderAddress: {
+      street1: 'Via Bianchi',
+      street2: '9',
+      city: 'Sesto Fiorentino',
+      zip: '57019',
+      country: 'it',
+    },
+    recipientAddress: {
+      street1: 'Piazza Giotto',
+      street2: '1',
+      city: 'Vicchio',
+      zip: '50039',
+      country: 'it',
+    }
+  },
 ]
 
 export default fixtures;

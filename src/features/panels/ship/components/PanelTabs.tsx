@@ -59,7 +59,7 @@ export const PanelsTabs: FC = () => {
   );
 
   return (
-    <Box className="panels-tabs" style={{ overflow: 'scroll' }} ref={tabsContainerRef}>
+    <Box className="panels-tabs" ref={tabsContainerRef}>
       {panels.map(panel => (
         <Box
           ref={node => onRefChange(node, panel.id)}

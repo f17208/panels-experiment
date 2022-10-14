@@ -11,7 +11,7 @@
 .panel-show {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 32px);
+  height: calc(100% - 36px);
 }
 
 .panel-hidden {
@@ -23,7 +23,6 @@
 }
 
 .panels-container {
-  /* transition: all ease-in 0.5s; */
   overflow: hidden;
   height: 100%;
 }
