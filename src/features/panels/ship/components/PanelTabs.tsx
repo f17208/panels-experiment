@@ -22,21 +22,30 @@ export const PanelsTabs: FC = () => {
 
   const tabsContainerRef = useRef<unknown>(null);
 
+  // autoscroll to bring the selected tab in view
   const onRefChange = useCallback(
     (node: unknown, id: string) => {
       if (node && tabsContainerRef.current && id === selectedPanelId) {
         const element = node as HTMLDivElement;
         const tabsContainerElement = (tabsContainerRef.current as HTMLDivElement)
 
+        // left (position) of selected tab
         const elemLeft = element.offsetLeft;
+        // width of selected tab
         const elemOffsetWidth = element.offsetWidth;
+        // how much is the tabs container scrolled (left border)
         const tabsScrollLeft = tabsContainerElement.scrollLeft;
+        // how large is the tabs container
         const tabsOffsetWidth = tabsContainerElement.offsetWidth;
+        // right (position) of selected tab
+        const elemRight = elemLeft + elemOffsetWidth;
+        // from zero-scroll position (left) to right border of tabs container
+        const tabsScrollRight = tabsScrollLeft + tabsOffsetWidth;
 
         const delta = elemLeft < tabsScrollLeft
-          ? elemLeft  - tabsScrollLeft
-          : (elemLeft + elemOffsetWidth) > tabsScrollLeft + tabsOffsetWidth
-            ? (elemLeft + elemOffsetWidth) - (tabsScrollLeft + tabsOffsetWidth)
+          ? elemLeft - tabsScrollLeft + elemOffsetWidth/2
+          : elemRight > tabsScrollLeft + tabsOffsetWidth
+            ? elemRight - tabsScrollRight + tabsOffsetWidth/2
             : undefined;
 
         if (delta) {
@@ -58,9 +67,14 @@ export const PanelsTabs: FC = () => {
           alignItems="center"
           key={panel.id}
           className={`panel-tab ${panel.id === selectedPanelId ? 'panel-tab-active' : undefined}`}
-          onClick={() => setSelectedPanelId(panel.id)}
+          onClick={() => {
+            console.log('oh', panel.id)
+            setSelectedPanelId(panel.id);
+          }}
         >
-          <Typography variant="caption" whiteSpace="nowrap">{panel.title}</Typography>
+          <Typography variant="caption" whiteSpace="nowrap" pr={1}>
+            {panel.title}
+          </Typography>
           <IconButton
             className="panel-tab-close"
             style={{
