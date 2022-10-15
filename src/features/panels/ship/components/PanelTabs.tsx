@@ -62,9 +62,7 @@ export const PanelsTabs: FC = () => {
     <Box className="panels-tabs" ref={tabsContainerRef}>
       {panels.map(panel => (
         <Box
-          ref={node => onRefChange(node, panel.id)}
-          display="flex"
-          alignItems="center"
+          ref={node => onRefChange(node, panel.id)}          
           key={panel.id}
           className={`panel-tab ${
             panel.id === selectedPanelId 
@@ -75,27 +73,29 @@ export const PanelsTabs: FC = () => {
             setSelectedPanelId(panel.id);
           }}
         >
-          <Typography variant="caption" whiteSpace="nowrap" pr={1}>
-            {panel.title}
-          </Typography>
-          <IconButton
-            className="panel-tab-close"
-            style={{
-              width: CLOSE_ICON_SIZE,
-              height: CLOSE_ICON_SIZE,
-            }}
-            onClick={e => {
-              onClose(panel.id);
-              e.stopPropagation();
-            }}
-          >
-            <Close
+          <Box className="panel-tab-title" display="flex" alignItems="center">
+            <Typography variant="caption" whiteSpace="nowrap" pr={1}>
+              {panel.title}
+            </Typography>
+            <IconButton
+              className="panel-tab-close"
               style={{
                 width: CLOSE_ICON_SIZE,
                 height: CLOSE_ICON_SIZE,
               }}
-            />
-          </IconButton>
+              onClick={e => {
+                onClose(panel.id);
+                e.stopPropagation();
+              }}
+            >
+              <Close
+                style={{
+                  width: CLOSE_ICON_SIZE,
+                  height: CLOSE_ICON_SIZE,
+                }}
+              />
+            </IconButton>
+          </Box>
         </Box>
       ))}
     </Box>
