@@ -15,6 +15,7 @@ const fixtures: Order[] = [
       city: 'Firenze',
       zip: '50121',
       country: 'it',
+      company: 'MyCompany™',
     },
     recipientAddress: {
       street1: 'Via Puccini',
@@ -22,6 +23,7 @@ const fixtures: Order[] = [
       city: 'Sesto Fiorentino',
       zip: '50019',
       country: 'it',
+      company: '',
     }
   },
   { 
@@ -38,6 +40,7 @@ const fixtures: Order[] = [
       city: 'Livorno',
       zip: '57100',
       country: 'it',
+      company: 'YourCompany S.r.l.',
     },
     recipientAddress: {
       street1: 'Via Giusti',
@@ -45,6 +48,7 @@ const fixtures: Order[] = [
       city: 'Pisa',
       zip: '56121',
       country: 'it',
+      company: '',
     }
   },
   { 
@@ -61,6 +65,7 @@ const fixtures: Order[] = [
       city: 'Grosseto',
       zip: '58100',
       country: 'it',
+      company: '',
     },
     recipientAddress: {
       street1: 'Via Giusti',
@@ -68,6 +73,7 @@ const fixtures: Order[] = [
       city: 'Viareggio',
       zip: '55049',
       country: 'it',
+      company: '',
     }
   },
   { 
@@ -84,6 +90,7 @@ const fixtures: Order[] = [
       city: 'Prato',
       zip: '59100',
       country: 'it',
+      company: 'Our Company©',
     },
     recipientAddress: {
       street1: 'Piazza Dante',
@@ -91,6 +98,7 @@ const fixtures: Order[] = [
       city: 'Borgo San Lorenzo',
       zip: '50032',
       country: 'it',
+      company: '',
     }
   },
   { 
@@ -107,6 +115,7 @@ const fixtures: Order[] = [
       city: 'Sesto Fiorentino',
       zip: '57019',
       country: 'it',
+      company: '',
     },
     recipientAddress: {
       street1: 'Piazza Giotto',
@@ -114,6 +123,7 @@ const fixtures: Order[] = [
       city: 'Vicchio',
       zip: '50039',
       country: 'it',
+      company: '',
     }
   },
 ]

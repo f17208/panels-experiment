@@ -6,6 +6,7 @@ const schema = yup.object().shape({
   city: yup.string().required(),
   zip: yup.string().required(),
   country: yup.string().required(),
+  company: yup.string(),
 });
 
 export default schema;

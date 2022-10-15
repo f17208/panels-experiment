@@ -21,6 +21,7 @@ export const useAddressForm = function(
       city: '',
       country: '',
       zip: '',
+      company: '',
       ...defaultValues,
     },
     ...rest,

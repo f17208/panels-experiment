@@ -11,7 +11,7 @@
 .panel-show {
   display: flex;
   flex-direction: column;
-  height: calc(100% - 36px);
+  height: 100%
 }
 
 .panel-hidden {
@@ -25,6 +25,8 @@
 .panels-container {
   overflow: hidden;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .panels-open {

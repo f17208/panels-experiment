@@ -6,4 +6,5 @@ export const userAddress: IAddressForm = {
   city: 'Firenze',
   zip: '50019',
   country: 'it',
+  company: 'ShippyPro'
 };

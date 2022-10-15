@@ -82,7 +82,24 @@ export const AddressForm: FC<AddressFormProps> = ({ form, onSubmit }) => {
             )}
           />
         </Grid>
-        <Grid item sm={12} md={6}>
+        <Grid item sm={12} md={8}>
+          <Controller
+            name="company"
+            control={control}
+            render={({ field: { onChange, value }, fieldState }) => (
+              <TextField
+                size="small"
+                onChange={onChange}
+                error={!!fieldState.error}
+                helperText={fieldState.error?.message}
+                value={value}
+                fullWidth
+                label="Company"
+              />
+            )}
+          />
+        </Grid>
+        <Grid item sm={12} md={4}>
           <Controller
             name="country"
             control={control}

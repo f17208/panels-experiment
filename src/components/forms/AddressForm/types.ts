@@ -4,4 +4,5 @@ export interface IAddressForm {
   city: string;
   zip: string;
   country: string;
+  company: string;
 }

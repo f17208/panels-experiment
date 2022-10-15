@@ -66,9 +66,12 @@ export const PanelsTabs: FC = () => {
           display="flex"
           alignItems="center"
           key={panel.id}
-          className={`panel-tab ${panel.id === selectedPanelId ? 'panel-tab-active' : undefined}`}
+          className={`panel-tab ${
+            panel.id === selectedPanelId 
+              ? 'panel-tab-active' 
+              : 'panel-tab-inactive'
+          }`}
           onClick={() => {
-            console.log('oh', panel.id)
             setSelectedPanelId(panel.id);
           }}
         >
