@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { LinkTabProps, TabLinks } from "../../../../components/navigation/TabLinks";
 import { ShipOrderFlowSteps } from "../constants";
 
@@ -15,10 +15,8 @@ const links: LinkTabProps[] = [
 
 export const EditOrderTabLinks = () => {
   return (
-    <Container maxWidth="xs">
-      <Box pb={2}>
-        <TabLinks links={links} />
-      </Box>
-    </Container>
+    <Box pb={2} px={2}>
+      <TabLinks links={links} />
+    </Box>
   );
 };

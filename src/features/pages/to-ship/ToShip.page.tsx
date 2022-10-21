@@ -1,3 +1,4 @@
+import { NoteAdd, Send } from "@mui/icons-material";
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useCallback, useMemo } from "react";
@@ -17,6 +18,7 @@ export const ToShipPage = () => {
       addPanel({
         id: panelId,
         title: `Ship ${order.id}`,
+        icon: <Send />,
         component: () => <ShipOrderFlow panelId={panelId} order={order} />
       })
     },
@@ -29,6 +31,7 @@ export const ToShipPage = () => {
       addPanel({
         id: panelId,
         title: 'Manual Shipment',
+        icon: <NoteAdd />,
         component: () => <ManualShipmentFlow panelId={panelId} />
       })
     },

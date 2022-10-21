@@ -57,6 +57,7 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
                 path={ShipOrderFlowSteps.EditAddress}
                 element={
                   <PanelLayout
+                    panelId={panelId}
                     header={title}
                     body={
                       <EditAddressBody
@@ -78,6 +79,7 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
                 path={ShipOrderFlowSteps.EditParcels}
                 element={
                   <PanelLayout
+                    panelId={panelId}
                     header={title}
                     body={<EditParcelsBody parcelForm={editParcelsForm} />}
                     footer={
@@ -94,6 +96,7 @@ export const ShipOrderFlow = ({ panelId, order }: ShipOrderFlowProps) => {
                 path={ShipOrderFlowSteps.Rates}
                 element={
                   <PanelLayout
+                    panelId={panelId}
                     header={title}
                     body={<RatesBody order={order} />}
                     footer={<RatesFooter panelId={panelId} />}

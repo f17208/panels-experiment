@@ -8,6 +8,8 @@ import {
   useCallback,
   SetStateAction,
   Dispatch,
+  JSXElementConstructor,
+  ReactElement,
 } from 'react';
 
 export interface PanelsContextProps {
@@ -34,6 +36,7 @@ export type PanelsProviderProps = {
 
 export type PanelProps = {
   component: () => JSX.Element;
+  icon?: string | ReactElement<any, string | JSXElementConstructor<any>>;
   title: string;
   id: string;
 }
